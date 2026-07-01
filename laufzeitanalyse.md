@@ -1,5 +1,9 @@
-test1(n) = O(n)
-test2(n) = O(n)
-test3(n) = O(n^3)
-test4(n) = O(n)
-test5(x, A) = O(log n)
+$$
+\begin{aligned}
+\text{test1}(n) &\in O(n) \\
+\text{test2}(n) &\in O(n) \\
+\text{test3}(n) &\in O(n^3) \\
+\text{test4}(n) &\in O(n) \\
+\text{test5}(x, A) &\in O(\log n)
+\end{aligned}
+$$
