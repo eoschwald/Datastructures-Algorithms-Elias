@@ -1,0 +1,5 @@
+test1(n) = O(n)
+test2(n) = O(n)
+test3(n) = O(n^3)
+test4(n) = O(n)
+test5(x, A) = O(log n)
