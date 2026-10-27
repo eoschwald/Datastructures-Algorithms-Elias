@@ -17,7 +17,16 @@ class Bubblesort(Sorter):
     name = "BUBBLESORT"
     def sort(self, A):
         A = list(A)
-        # TODO: Bitte implementieren
+        n = len(A)
+        for i in range(n - 1):
+            swapped = False
+            # After pass i, the last i elements are already in their final position
+            for j in range(n - 1 - i):
+                if A[j] > A[j + 1]:
+                    A[j], A[j + 1] = A[j + 1], A[j]
+                    swapped = True
+            if not swapped:
+                break
         return A
 
 
