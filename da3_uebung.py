@@ -68,8 +68,26 @@ class Mergesort(Sorter):
     name = "MERGESORT"
     def sort(self, A):
         A = list(A)
-        # TODO: Bitte implementieren
-        return A
+        if len(A) <= 1:
+            return A
+        mid = len(A) // 2
+        links = self.sort(A[:mid])
+        rechts = self.sort(A[mid:])
+        return self.merge(links, rechts)
+
+    def merge(self, links, rechts):
+        result = []
+        i = j = 0
+        while i < len(links) and j < len(rechts):
+            if links[i] <= rechts[j]:
+                result.append(links[i])
+                i += 1
+            else:
+                result.append(rechts[j])
+                j += 1
+        result.extend(links[i:])
+        result.extend(rechts[j:])
+        return result
 
 if __name__ == "__main__":
     for s in [Bubblesort(), Quicksort(), Mergesort()]:
