@@ -96,4 +96,4 @@ if __name__ == "__main__":
         assert s.sort(a) == sorted(a), \
                             "List is not propertly sorted. "+s.name+" returned: "+str(s.sort(a))+" but we expected: "+str(sorted(a))
 
-    print "Well done! Now go and read: https://en.wikipedia.org/wiki/Timsort to see how Python does it."
+    print ("Well done! Now go and read: https://en.wikipedia.org/wiki/Timsort to see how Python does it.")
