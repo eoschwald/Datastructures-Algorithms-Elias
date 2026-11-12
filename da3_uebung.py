@@ -41,16 +41,24 @@ class Quicksort(Sorter):
         return A
 
     def quicksort(self, A, lo, hi):
-        if lo < hi:
+        # Recurse into the smaller part and loop over the larger one,
+        # so the recursion depth stays O(log n) even in the worst case
+        while lo < hi:
             p = self.partition(A, lo, hi)
-            self.quicksort(A, lo, p - 1)
-            self.quicksort(A, p + 1, hi)
+            if p - lo < hi - p:
+                self.quicksort(A, lo, p - 1)
+                lo = p + 1
+            else:
+                self.quicksort(A, p + 1, hi)
+                hi = p - 1
 
     def partition(self, A, lo, hi):
         """
-            Lomuto partition with the last element as pivot.
+            Lomuto partition with a random pivot (moved to the last position).
             return: The final index of the pivot
         """
+        r = random.randint(lo, hi)
+        A[r], A[hi] = A[hi], A[r]
         pivot = A[hi]
         i = lo - 1
         for j in range(lo, hi):
@@ -94,6 +102,6 @@ if __name__ == "__main__":
         a = [random.randint(0,100) for i in range(10)]
         # Test ob euer Sortierverfahren das gleiche zurueckgibt wie die Python Implementation
         assert s.sort(a) == sorted(a), \
-                            "List is not propertly sorted. "+s.name+" returned: "+str(s.sort(a))+" but we expected: "+str(sorted(a))
+                            "List is not properly sorted. "+s.name+" returned: "+str(s.sort(a))+" but we expected: "+str(sorted(a))
 
     print ("Well done! Now go and read: https://en.wikipedia.org/wiki/Timsort to see how Python does it.")
