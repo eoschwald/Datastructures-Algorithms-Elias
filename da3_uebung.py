@@ -97,8 +97,43 @@ class Mergesort(Sorter):
         result.extend(rechts[j:])
         return result
 
+class Heapsort(Sorter):
+    """
+        Implements HEAPSORT as discussed in the lecture
+    """
+    name = "HEAPSORT"
+    def sort(self, A):
+        A = list(A)
+        n = len(A)
+        # Build a max-heap, starting at the last node that has children
+        for i in range(n // 2 - 1, -1, -1):
+            self.sift_down(A, i, n)
+        # Move the current maximum to the end and restore the heap on the rest
+        for end in range(n - 1, 0, -1):
+            A[0], A[end] = A[end], A[0]
+            self.sift_down(A, 0, end)
+        return A
+
+    def sift_down(self, A, i, n):
+        """
+            Sink A[i] until the subtree rooted at i is a max-heap.
+            Only the first n elements of A belong to the heap.
+        """
+        while True:
+            largest = i
+            left = 2 * i + 1
+            right = 2 * i + 2
+            if left < n and A[left] > A[largest]:
+                largest = left
+            if right < n and A[right] > A[largest]:
+                largest = right
+            if largest == i:
+                return
+            A[i], A[largest] = A[largest], A[i]
+            i = largest
+
 if __name__ == "__main__":
-    for s in [Bubblesort(), Quicksort(), Mergesort()]:
+    for s in [Bubblesort(), Quicksort(), Mergesort(), Heapsort()]:
         a = [random.randint(0,100) for i in range(10)]
         # Test ob euer Sortierverfahren das gleiche zurueckgibt wie die Python Implementation
         assert s.sort(a) == sorted(a), \
